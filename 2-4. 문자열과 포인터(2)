@@ -1,0 +1,16 @@
+#include <stdio.h>
+unsigned int myStrlen(const char* str){
+	int i;
+	char* s;
+	for(s=str;*s!='\0';s++){};
+	return s-str;
+}
+int main() {
+	char* s;
+	s=(char*)malloc(sizeof(char)*1000);
+	printf("문자열을 입력하세요.\n");
+ 	scanf("%s", s);
+  printf("문자열의 길이는 %d 입니다.\n", myStrlen(s));
+  return 0;
+}
+
