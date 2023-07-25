@@ -1,0 +1,25 @@
+#include <stdio.h>
+int main()
+{
+	char* s="world";  //포인터 변수 s 에 "world" 저장
+	int i;
+	printf("%08X %08X %08X %s\n", &s, s, &s[0], s); //s주소, s값의 주소, s배열의 주소, s값 출력
+	for(i=0;s[i]!='\0';i++)
+		printf("%08X %c\n", &s[i], s[i]);  //문자배열 주소, 문자배열 값 출력
+	return 0;
+}
+
+#include <stdio.h>
+void outpuyArray(int* p, int n);  //배열 p에 시작주소, 요소개수
+
+int main(){
+	int array[3]={10, 20, 30}; //배열 array 에 10, 20, 30 저장
+	int size = sizeof(array)/sizeof(array[0]);  //size=배열 전체크기/4 = 3이 저장
+	outpuyArray(array,size);
+}
+
+void outpuyArray(int* p, int n){
+	int i;
+	for(i=0;i<n;i++)
+		printf("%d %d\n", p[i], *(p+i));  //p[i]==*(p+i)
+}
