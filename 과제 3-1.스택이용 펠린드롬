@@ -1,0 +1,71 @@
+#include <stdio.h>
+#define MAX 100
+typedef char element;
+typedef struct Stack{
+ element str[MAX];
+ int top;
+}Stack;
+
+void initStack(Stack *s){
+	s->top=-1;
+}
+
+int isFull(Stack *s){
+ return s->top==MAX-1;
+}
+
+int empty(Stack *s){
+ return s->top==-1;
+}
+
+void push(Stack* s, char c){
+ if(isFull(s))
+ {
+  printf("FULL");
+ }
+ else
+ {
+  s->str[++s->top]=c;
+ }
+}
+
+char pop(Stack *s){
+ 	char temp;
+ 	if(empty(s)){
+  printf("EMPTY");
+  return 0;
+ }
+	temp=s->str[s->top--];
+	return temp;
+}
+
+int palindrome(char str[]){
+ 	Stack s;
+ 	int i;
+	initStack(&s);
+	for(i=0;str[i]!='\0';i++) {
+		if(str[i]>='A' && str[i]<='Z') str[i]+='a'-'A';
+		push(&s, str[i]);
+	}
+ 	for(i=0;str[i]!='\0';i++)
+ 	{
+		char c=pop(&s);
+	 	//printf("str[%d] : %c, pop(&s)=%c\n",c);
+	 	if(str[i]!=c){
+			return 0;
+		}
+	}
+	return 1;
+}
+
+
+int main(void){
+ char str[MAX];
+ scanf("%s",str);
+
+ if(palindrome(str))
+  printf("TRUE");
+ else
+  printf("FALSE");
+ return 0;
+}
